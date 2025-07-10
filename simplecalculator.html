@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+
+  <h2>Simple Calculator</h2>
+
+  <input type="text" id="display" readonly><br><br>
+
+  <button onclick="display.value += '7'">7</button>
+  <button onclick="display.value += '8'">8</button>
+  <button onclick="display.value += '9'">9</button>
+  <button onclick="operatorClicked('/')">/</button><br><br>
+
+  <button onclick="display.value += '4'">4</button>
+  <button onclick="display.value += '5'">5</button>
+  <button onclick="display.value += '6'">6</button>
+  <button onclick="operatorClicked('*')">*</button><br><br>
+
+  <button onclick="display.value += '1'">1</button>
+  <button onclick="display.value += '2'">2</button>
+  <button onclick="display.value += '3'">3</button>
+  <button onclick="operatorClicked('-')">-</button><br><br>
+
+  <button onclick="display.value += '0'">0</button>
+  <button onclick="clearAll()">C</button>
+  <button onclick="calculate()">=</button>
+  <button onclick="operatorClicked('+')">+</button><br><br>
+
+  <script>
+    let a = "";
+    let b = "";
+    let op = "";
+    let display = document.getElementById("display");
+
+    function operatorClicked(symbol) {
+      op = symbol;
+      a = display.value;
+      display.value = "";
+    }
+
+    function clearAll() {
+      a = "";
+      b = "";
+      op = "";
+      display.value = "";
+    }
+
+    function calculate() {
+      b = display.value;
+
+      let num1 = parseFloat(a);
+      let num2 = parseFloat(b);
+      let result = 0;
+
+      if (op === "+") {
+        result = num1 + num2;
+      } else if (op === "-") {
+        result = num1 - num2;
+      } else if (op === "*") {
+        result = num1 * num2;
+      } else if (op === "/") {
+        if (num2 === 0) {
+          result = "Cannot divide by 0";
+        } else {
+          result = num1 / num2;
+        }
+      }
+
+      display.value = result;
+    }
+  </script>
+
+</body>
+</html>
